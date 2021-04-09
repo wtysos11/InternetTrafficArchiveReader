@@ -20,8 +20,8 @@ class logReader:
                 Exception(illegal directory name.)
         '''
         # use directory name to choose mode
-        if directoryName not in ["Calgary","NASA_http","Sakatchewan-HTTP","clarknet"]:
-            raise Exception('Illegal directory name. Please check in "Calgary","NASA_http","Sakatchewan-HTTP","clarknet"')
+        if directoryName not in ["Calgary","NASA_http","Saskatchewan-HTTP","clarknet"]:
+            raise Exception('Illegal directory name. Please check in "Calgary","NASA_http","Saskatchewan-HTTP","clarknet"')
         self.directoryName = directoryName
     
     def parseLine(self,line):
@@ -29,19 +29,19 @@ class logReader:
             parse a string line which end with '\n'
             return it's datetime
             Args:
-                line, string end with '\n'(getline)
+                line, bytes array end with '\n'(getline in rb mode)
             Returns:
                 datetime
             Exception:
                 Exception(illegal line)
         '''
         # find [ ] and extract datetime info
-        firstBracket = line.find('[')
-        secondBracket = line.find(']')
+        firstBracket = line.find(bytes('[',encoding='utf-8'))
+        secondBracket = line.find(bytes(']',encoding='utf-8'))
         if firstBracket == -1 or secondBracket == -1:
-            raise Exception("Bracket not found")
-
-        infoStr = line[firstBracket+1:secondBracket]
-        # use datetime to extract information
+            raise Exception("Bracket not found in {}".format(line))
+        
+        infoStr = line[firstBracket+1:secondBracket].decode('utf-8')
         return datetime.strptime(infoStr,"%d/%b/%Y:%H:%M:%S %z")
+        
         
