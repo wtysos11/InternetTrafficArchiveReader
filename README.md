@@ -12,3 +12,6 @@ What's more, as all the server log data is huge (WC98>8GB, other>300MB), they wo
 
 ## How to use the script
 
+## something need to improve
+
+As WC98 format is different from others, it may not be implemented for a while.,m
