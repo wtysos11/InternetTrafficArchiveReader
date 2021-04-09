@@ -1,0 +1,11 @@
+*.gz
+/WorldCup/*
+/Calgary/*
+/clarknet/*
+/NASA_http/*
+/Saskatchewan-HTTP/*
+plan.md
+!/Calgary/Calgary-HTTP.html
+!/clarknet/ClarkNet-HTTP.html
+!/NASA_http/NASA-HTTP.html
+!/Saskatchewan-HTTP/Sask-HTTP.html
