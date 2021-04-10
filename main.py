@@ -34,22 +34,25 @@ def readFile_getData(fileName,directoryName = "Calgary"):
             timeData[deltaHour] += 1
 
     dayIndex = pd.date_range(baseTime,periods=len(timeData),freq='H')
-    df = pd.DataFrame({"datetime":dayIndex,"values":timeData})
+    # 输出格式按照 2016/7/1  5:00:00进行
+    # datetime.strftime("%Y/%m/%d %H:%M:%S")
+    df = pd.DataFrame({"datetime":dayIndex,"view":timeData})
+    df.datetime = df.datetime.dt.strftime("%Y/%m/%d %H:%M:%S")
     return df
 
 def main():
     calgaryDataFrame = readFile_getData("calgary_access_log/access_log","Calgary")
-    calgaryDataFrame.to_csv("Calgary.csv")
+    calgaryDataFrame.to_csv("Calgary.csv",index=None)
     clarknetAug28 = readFile_getData("clarknet_access_log_Aug28/Aug28_log","clarknet")
-    clarknetAug28.to_csv("ClarknetAug28.csv")
+    clarknetAug28.to_csv("ClarknetAug28.csv",index=None)
     ClarknetSep4 = readFile_getData("clarknet_access_log_Sep4/access_1","clarknet")
-    ClarknetSep4.to_csv("ClarknetSep4.csv")
+    ClarknetSep4.to_csv("ClarknetSep4.csv",index=None)
     NASAAug95 = readFile_getData("NASA_access_log_Aug95/access_log_Aug95","NASA_http")
-    NASAAug95.to_csv("NASAAug95.csv")
+    NASAAug95.to_csv("NASAAug95.csv",index=None)
     NASAJul95 = readFile_getData("NASA_access_log_Jul95/access_log_Jul95","NASA_http")
-    NASAJul95.to_csv("NASAJul95.csv")
+    NASAJul95.to_csv("NASAJul95.csv",index=None)
     Saskhttp = readFile_getData("usask_access_log/UofS_access_log","Saskatchewan-HTTP")
-    Saskhttp.to_csv("Saskhttp.csv")
+    Saskhttp.to_csv("Saskhttp.csv",index=None)
 
 if __name__=="__main__":
     main()
